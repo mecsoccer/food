@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import SearchBar from '../Components/SearchBar';
 import useProductsResults from '../hooks/useProductsResults';
 import ResultList from '../Components/ResultList';
+import { BlogContext, BlogProvider } from '../context/BlogContext';
 
 const SearchScreen = () => {
+  const value = useContext(BlogContext);
+
   const { term, setTerm, searchResult, onSearchSubmit } = useProductsResults();
 
   return (
     <>
-      <Text style={styles.mgl}>Search Screen</Text>
+      <Text style={styles.mgl}>Search Screen {value}</Text>
       <SearchBar
         changeTerm={(newTerm: string) => setTerm(newTerm)}
         onSearchSubmit={onSearchSubmit}
